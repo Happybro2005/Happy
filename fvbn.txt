@@ -1,0 +1,21 @@
+def calculate_net_salary(annual_salary):
+    # Define the thresholds
+    threshold_12_lakh = 1200000  # 12 lakh
+    threshold_18_lakh = 1800000  # 18 lakh
+
+    # Calculate deductions based on salary
+    if annual_salary > threshold_18_lakh:  # More than 18 lakh
+        deduction = annual_salary * 0.20  # 20% deduction
+    elif annual_salary > threshold_12_lakh:  # More than 12 lakh
+        deduction = annual_salary * 0.15  # 15% deduction
+    else:
+        deduction = 0  # No deduction
+
+    # Calculate net salary
+    net_salary = annual_salary - deduction
+    return net_salary
+
+# Example usage
+annual_salary = float(input("Enter the annual salary: "))
+net_salary = calculate_net_salary(annual_salary)
+print(f"The net salary after deductions is: {net_salary:.2f}")
