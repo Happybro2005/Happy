@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Salary Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label, input {
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Net Salary Calculator</h1>
+    <label for="annualSalary">Enter the annual salary:</label>
+    <input type="number" id="annualSalary" placeholder="Annual Salary" required>
+    <button onclick="calculateNetSalary()">Calculate Net Salary</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function calculateNetSalary() {
+            const annualSalary = parseFloat(document.getElementById('annualSalary').value);
+            let deduction = 0;
+
+            // Define the thresholds
+            const threshold12Lakh = 1200000;  // 12 lakh
+            const threshold18Lakh = 1800000;  // 18 lakh
+
+            // Calculate deductions based on salary
+            if (annualSalary > threshold18Lakh) {  // More than 18 lakh
+                deduction = annualSalary * 0.20;  // 20% deduction
+            } else if (annualSalary > threshold12Lakh) {  // More than 12 lakh
+                deduction = annualSalary * 0.15;  // 15% deduction
+            }
+
+            // Calculate net salary
+            const netSalary = annualSalary - deduction;
+
+            // Display the result
+            document.getElementById('result').innerText = `The net salary after deductions is: ₹${netSalary.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>
